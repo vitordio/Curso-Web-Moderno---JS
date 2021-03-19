@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Unidades #01</title>
+    <style>
+        /* 
+            Unidadades
+            - Absolutas
+                : px
+                : cm
+                : mm
+            
+            ** Relativos  **
+            - Viewport - tamanho da página
+                : vh
+                : vw
+                : vmin
+                : vmax
+
+            - Font
+            se um elemento tiver 2em, significa que vai ter 2x mais o tamanho do pai ou do elemento raiz no caso do rem
+                : rem - trabalha com a fonte raiz
+                : em -  trabalha com a fonte que está mais próxima do elemento 
+        */
+        .unidades-absolutas {
+            position: absolute; /* colocamos o position não tem relação com a unidade ser absoluta */
+            font-size: 40px;
+            padding: 20px;
+            border: 5px solid #222;
+            margin: 30px;
+            width: 400px;
+            height: 200px;
+
+            /* Top e o left funcionam com o position: absolute */
+            top: 150px;
+            left: 200px;
+        }
+
+        /* A boa prática usar fontes relativas */
+        .unidades-relativas {
+            position: absolute;
+            font-size: 4em;
+            padding: 5%;
+            border: 1vw solid #222;
+            margin: .8%;
+            width: 20vw;
+            height: 15vh;
+            bottom: 5%;
+            right: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="unidades-absolutas">Opa!</div>
+    <div class="unidades-relativas">Epa!</div>
+</body>
+
+</html>

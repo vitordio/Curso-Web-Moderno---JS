@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #01</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo">.terceiro .ultimo</div>
+    <script>              
+        /** Formas para selectionar elementos **/
+
+        /******* Selecionando pelo ID *******/
+        document.getElementById('primeiro').classList.add('destaque') /* adiciona uma classe pelo id */
+
+        /******* Pegando elementos pela tagName *******/
+        const divs = document.getElementsByTagName('div') /* pega todos os elementos <div> */
+
+        /* Como o exemplo acima retorna um HTMLCollection, passamos para Array pois as vezes não é interesante trabalhar com HTMLCollection */
+        Array.from(divs).forEach(e => e.classList.remove('destaque')); // remove a classe destaque
+
+        const divsArray = [...divs]; // outra forma de transformar tudo em array
+        divsArray.forEach(e => e.classList.add('destaque'))
+
+        /******* Pegando elementos pela Classe *******/
+        const ultimosElementos = document.getElementsByClassName('ultimo')
+        for(let e of ultimosElementos) e.classList.remove('destaque')
+    </script>
+</body>
+</html> 

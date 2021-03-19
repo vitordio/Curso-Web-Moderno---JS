@@ -1,0 +1,55 @@
+<h1>Projeto - Listas Aninhadas</h1>
+<ul class="tree">
+    <li>
+        <a class="expand">Backend</a>
+        <ul>
+            <li>
+                <a class="expand">app</a>
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                <a class="expand">config</a>
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a class="expand">frontend</a>
+        <ul>
+            <li>
+                <a class="expand">public</a>
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+<style>
+    a.expand {
+        cursor: pointer;
+    }
+</style>
+<script>
+    document.querySelectorAll('.expand').forEach(link => {
+        link.onclick = function(e) {
+            // debugger -> irá abrir o debug do console para ir debugando
+            const ul = link.nextElementSibling
+            const display  = ul.style.display
+
+            ul.style.display = display === 'none' ? 'block' : 'none';
+        }
+    })
+</script>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox #01</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        .big {
+            font-size: 1.5em;
+        }
+
+        .flex-container {
+            display: flex; /* Passamos a dizer que essa classe passa ser um flex-container(flexbox) */
+            flex-direction: column;
+            flex-direction: column-reverse; /* a forma como foi definido no html será exibido de forma reversa */
+            flex-direction: row-reverse; /* além de inverter as linhas como no columns reverse, exibe como se tivesse um float:right, mantendo o conteúdo na direita */
+            flex-direction: row; /* formato padrão */
+
+            width: 50%;
+            height: 200px;
+
+            /*
+                Flex-wrap trabalha com a forma que o conteúdo irá ser exibido
+                ao chegar no fim da largura do flex-container
+                Ex: Ao chegar no fim do flex-container, quebra a linha, não ultrapassa como o padrão é.
+            */
+            flex-wrap: wrap; /* quebra a linha */
+            flex-wrap: wrap-reverse; /* quebra a linha porém a linha de cima vai pra baixo e a de baixo vai pra cima */
+
+            flex-flow: column-reverse wrap;
+            flex-flow: row wrap;
+
+            /* Propriedade para justificar o conteúdo */
+            justify-content: flex-start; /* justifica no início */
+            justify-content: flex-end; /* justifica no fim */
+            justify-content: center; /* centraliza os flexitens */
+            justify-content: space-around; /* coloca espaço entre os elementos para que fique ocupando a largura toda do flexcontainer */
+            justify-content: space-between; /* coloca espaço entre os elementos mas não coloca nas pontas */
+
+            /* Cross Axis */
+            /* Alinhamentos no cross axis */
+            height: 400px;
+            align-items: stretch; /* padrão */
+            align-items: baseline; /* alinha pela linha de base das fontes */
+            align-items: flex-start; /* alinha no início do flexitem */
+            align-items: flex-end; /* alinha no fim do flex item */
+            align-items: center; /* alinha no centro do flex item */
+
+            /* Quando temos mais de uma linha, usamos o align content */
+            align-content: flex-start; /* todas as linhas vão para o início do flexcontainer */
+            align-content: flex-end; /* todas as linhas vão para o fim do flexcontainer */
+            align-content: center;
+            align-content: space-around;
+            align-content: space-between;
+        }
+    </style>
+</head>
+
+<!--
+*** Nomenclatura flexbox ***
+- É unidimensional, ou trabalha com linhas ou com colunas
+- Passa a ser flexbox quando marcamos determinado elemento com display:flex
+- Flex container - objetivo de armazenar dentro dele itens (Flex item).
+    - O flex item também pode ser um flex container com flex itens dentro dele
+    - Main axis - eixo principal
+    - Cross axis - eixo secundário
+    - Ex: Se o main axis é a coluna, o cross axis passa a ser a linha
+    
+- Por padrão, o flex direction, que define se irá ser linha ou coluna, vem marcado como ROW
+
+- Tanto também o coneito de início (main start) e fim (main end). E tamém o tamanho da caixa, main size
+- Temos também o cross start, cross end e cross size, que são referentes ao cross axis.
+    - Propriedades q usamos até para questão de alinhamento. Se quero alinhar no início da linha, no fim da linha, quero centralizar, etc
+
+-->
+<body>
+    <div class="flex-container tag nolabel">
+        <div class="tag nolabel">1</div>
+        <div class="tag nolabel">2</div>
+        <div class="tag nolabel big">3</div>
+        <div class="tag nolabel">4</div>
+        <div class="tag nolabel">5</div>
+        <div class="tag nolabel">6</div>
+        <div class="tag nolabel">7</div>
+        <div class="tag nolabel">8</div>
+        <div class="tag nolabel">9</div>
+        <div class="tag nolabel">10</div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>

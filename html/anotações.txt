@@ -1,0 +1,4 @@
+As tags de título, não são para apenas mudar os tamanhos,
+e sim se referem a importância que cada título terá.
+
+Control + Shift + V - ativa a extensão preview exibindo uma prévia de como está ficando o HTML

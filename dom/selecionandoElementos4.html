@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #04</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <p>Início</p>
+    </div>
+    <div>
+        <ul>
+            <li>Pedro</li>
+            <li>Ana</li>
+            <li>Bia</li>
+        </ul>
+    </div>
+    <div>
+        <p>Fim</p>
+    </div>
+    <script>
+        /**** Parent Node - pega o elemento pai ****/
+        const lista = document.querySelector('div ul');
+        console.log(lista.parentNode);
+
+        /*** ChildNodes && Children - pegam os elementos filhos ****/
+        console.log(lista.childNodes);
+        console.log(lista.children); // HTMLCollection
+
+        /* FirstChild - Pega o primeiro filho (primeiro elemento) */
+        const primeiro = lista.firstChild // o first child traz o #text
+        const primeiroElemento = lista.firstElementChild // traz realmente o primeiro elemento como tag '<li>...</li>'
+
+        console.log(primeiro);
+        console.log(primeiroElemento);
+        console.log(primeiro.nextSibling); // selecina o próximo irmão desse elemento
+
+        /* LastChild - Pega o último filho (último elemento) */
+        const ultimo = lista.lastChild // o last child traz o #text
+        const ultimoElemento = lista.lastElementChild // traz realmente o ultimo elemento como tag '<li>...</li>'
+        
+        console.log(ultimo);
+        console.log(ultimoElemento);
+        console.log(ultimo.previousSibling); // pega o elemento anterior desse elemento
+
+        /* Temos como misturar as formas também */
+        // Pega o elemento anterior e o próximo ao elemento pai da lista
+        console.log(lista.parentNode.previousElementSibling); 
+        console.log(lista.parentNode.nextElementSibling); 
+
+        /* Mas apesar de tudo, o ideal ao invés de ficar navegando nos elementos filhos, pais, etc
+        é pegar direto o que você deseja com o querySelectorAll por exemplo */
+        console.log(document.querySelectorAll('div ul li'));
+    </script>
+</body>
+
+</html>

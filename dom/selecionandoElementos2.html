@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Selecionar Elementos #02</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body class="conteudo exercicio">
+    <div id="primeiro">#primeiro</div>
+    <div>Segundo</div>
+    <div class="terceiro ultimo"><span wb-attrib>.terceiro .ultimo</span></div>
+    <script>              
+        /******* Selecionando através do querySelector *******/
+        document.querySelector('#primeiro').classList.add('destaque') 
+
+        /******* Selecionando através do querySelectorAll *****/
+        /* Função para adicionar o destaque */
+        /* QuerySelectorAll não retorna uma HTMLCOLLECTION e sim uma NODELIST */
+        /* Diferente do HTMLCollection o Nodelist tem a função forEach */
+        /* Porém não tem outras funções importantes de um Array */
+        const selecionar = seletor =>
+            document.querySelectorAll(seletor).forEach(e => e.classList.add('destaque'))
+
+        const deselecionar = seletor =>
+            document.querySelectorAll(seletor).forEach(e => e.classList.remove('destaque'))
+
+        /* adiciona a classe destaque em todas as divs */
+        selecionar('div');
+
+        /* remove o destaque de todos os elementos */
+        deselecionar('*')
+
+        /* seleciona os elementos que tem as classes terceiro e ultimo */
+        selecionar('.terceiro.ultimo')
+        deselecionar('*')
+ 
+        /* Todos que não tem o id primeiro vão ser selecionados */
+        selecionar(':not(#primeiro)')
+        deselecionar('*')
+
+        /* Seleciona o primeiro filho de todos os elementos */
+        selecionar(':nth-child(1)')
+        deselecionar('*')
+
+        /* Seleciona por atributo */
+        selecionar('[wb-attrib]');
+    </script>
+</body>
+</html>

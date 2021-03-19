@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios HTML</title>
+    <style>
+        #content {
+            padding: 30px 0px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercícios HTML</h1>
+    </header>
+    <nav>
+        <!-- pegaremos pelo atributo web-menu ao invés da tag a -->
+        <a href="exercicios/teste.html" web-menu>00 - Teste</a> |
+        <a href="exercicios/tags1.html" web-menu>01 - Tags 1</a> |
+        <a href="exercicios/tags2.html" web-menu>02 - Tags 2</a> |
+        <a href="exercicios/listas.html" web-menu>03 - Listas</a> |
+        <a href="exercicios/listaAninhada.html" web-menu>04 - Listas Aninhadas</a> |
+        <a href="exercicios/links.html" web-menu>05 - Links</a> |
+        <a href="exercicios/tabela.html" web-menu>06 - Tabela</a> |
+        <a href="exercicios/form/form.html" web-menu>07 - Formulário</a> |
+        <a href="exercicios/imagens.html" web-menu>08 - Imagens</a> |
+    </nav>
+    <section id="content"></section>
+    <footer>
+        Curso de WEB Moderno
+    </footer>
+    <script>
+        document.querySelectorAll('[web-menu]').forEach(link => {
+            const conteudo = document.getElementById('content')
+            link.onclick = function(e) {
+                e.preventDefault() // previne que o comportamento padrão ocorra
+                fetch(link.href) // faz a requisição ajax
+                    .then(resp => resp.text()) // pega o conteúdo do html da outra página
+                    .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
+</body>
+</html>

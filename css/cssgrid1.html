@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Grid #01</title>
+    <style>
+        /* https://caniuse.com/#feat=css-grid */
+
+        /* Podemos usar e é uma solução bem interessante usar o CSS Grid junto com o FlexBox */
+        html,
+        body {
+            margin: 20px;
+            height: calc(100% - 40px);
+            background-color: lightgray;
+        }
+        
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            border: solid 5px dodgerblue;
+            background: #fff;
+        }
+
+        /*
+        Diferente do Flexbox, o CSS Grid é uma grid de fato, trabalhando com linhas e colunas
+            - grid-template-columns: defino qual vai ser a organização das colunas dentro do CSS grid
+        */
+        body {
+            display: grid;
+
+            /* Template para as colunas */
+            grid-template-columns: 50% 50%; /* primeira coluna 50% e a segunda 50% */
+
+            /* podemos usar o repeat para não ter que ficar colocando vários valores */
+            /* no cenário abaixo, teremos 4 colunas de 8.33% cada */
+            grid-template-columns: repeat(4, 8.33%);
+            grid-template-columns: repeat(12, 8.33%);
+
+            /* minmax(100px, 300px) - usado para definir o mínimo e o máximo que queremos para a coluna */
+            
+            /* com o exemplo abaixo, estamos dizendo que*/ 
+            /* a primeira coluna terá 200px, a segunda terá 20% e a terceira 1 fragmento (pega todo o resto que sobrou) */
+            grid-template-columns: 200px 20% 1fr;
+            grid-template-columns: 3fr 6fr 3fr;
+
+            /* Template para as linhas*/
+            grid-template-rows: 50% 25% 12.5% 12.5%;
+            grid-template-rows: 100px 1fr; /* definimos apenas para 1 e 2 linhas, as demais, se não definirmos, pegará o espaço que sobrar*/
+            grid-template-rows: 100px auto; /* o auto organiza de forma automática igualitária */
+        }
+
+        .d8 {
+            grid-column-start: 2; /* vai iniciar a partir da coluna 2 */
+            grid-column-end: 4; /* vai ocupar da coluna 2 até a 4 (pegando então o espaço da d9) */
+            grid-column-end: span 2; /* podemos usar dessa forma também para mostrar que ele irá ocupar 2 colunas ou mais*/
+
+            grid-row-start: 3; /* inicia a partir da linha 3 */
+            grid-row-end: 5; /* vai ocupar da linha 3 até a linha 5 */
+            grid-row-end: span 2; /* podemos usar dessa forma também para mostrar que ele irá ocupar 2 linhas ou mais*/
+        }
+
+        .d10,
+        .d11 {
+            /* as celulas podem se sobrepor */
+            grid-column-start: 1;
+            grid-column-end: span 2;
+
+            grid-row-start: 5;
+            grid-row-end: span 1;
+        }
+
+        /* Propriedade z-index */
+        /* Profundidade dos elementos, como vamos organizar os elementos na página */
+        /* no exemplo das classes .d10 e .d11, o d11 se sobrepos ao d10 */
+        .d10 {
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d1">1</div>
+    <div class="d2">2</div>
+    <div class="d3">3</div>
+    <div class="d4">4</div>
+    <div class="d5">5</div>
+    <div class="d6">6</div>
+    <div class="d7">7</div>
+    <div class="d8">8</div>
+    <div class="d9">9</div>
+    <div class="d10">10</div>
+    <div class="d11">11</div>
+    <div class="d12">12</div>
+</body>
+
+</html>

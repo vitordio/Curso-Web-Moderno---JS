@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <script>
+        // Referenciamos o body que é aonde vamos adicionar os novos elementos
+        const body = document.querySelector('body');
+
+        // Criamos o primeiro elemento div
+        const div1 = document.createElement('div');
+        div1.classList.add('destaque')
+        div1.innerHTML = 'Primeiro'
+
+        console.log(div1);
+
+        // Criamos o segundo elemento div
+        const div2 = document.createElement('div');
+        div2.setAttribute('wm-atributo', 'teste');
+        div2.innerHTML = 'Segundo'
+
+        console.log(div2);
+
+        // Criamos a segunda div, mas com um p dentro
+        const div3 = document.createElement('div');
+        const p = document.createElement('p');
+        p.innerHTML = 'Terceiro - p'
+
+        // AppendChild vai adicionar como último elemento daquele pai (div3)
+        div3.appendChild(p);
+
+        console.log(div3);
+
+        // Adicionando os elementos no body
+        body.appendChild(div1)
+        body.appendChild(div2)
+        body.appendChild(div3)
+
+        // createTextNode - cria apenas um texto sem tags
+        const texto = document.createTextNode('Qualquer')
+
+        // Com o insertBefore, inserimos no elemento que desejamos
+        //exatamente na posição que queremos do elemento 
+        div3.insertBefore(texto, div3.childNodes[0])
+
+        // Criando um clone de um elemento
+        const div4 = div3.cloneNode(true) // deep: true diz se a clonagem profunda (com todos os seus filhos)
+        body.appendChild(div4)
+
+        // Removendo elemento
+        body.removeChild(div3)
+    </script>
+</body>
+
+</html>

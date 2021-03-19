@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <div>
+        <!-- Onclick direto na tag -->
+        <!-- 
+            Vantagem: Fica explicito para quem está lendo que ali terá um tratamento no clique 
+            Desvantagem: Fica meio que hardcoded direto no HTML todos os eventos. Perde a flexibilidade.
+        -->
+        <!-- onclick="navegarEm5s(event)" -->
+        <a  href="https://google.com.br">Google</a>
+    </div>
+    <script>
+        // Interceptando o click
+        function navegarEm5s(event) {
+            event.preventDefault(); // previne o comportamento padrão
+            console.log('Saindo em 5s');
+
+            setTimeout(() => {
+                window.location.href = event.target.href
+            }, 5000)
+        } 
+
+        // Chamando pelo javascript
+        document.querySelector('a').onclick = navegarEm5s
+    </script>
+</body>

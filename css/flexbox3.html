@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox #03</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        .flex-container div {
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            flex-direction: row;
+        }
+
+        .flex-container div {
+            /* 
+            Flex-basis
+            - propriedade que define a largura de um determinado elemento dentro do flex container
+            - sempre no sentido do main axis
+            - se tivermos trabalhando com o:
+                - flex-direction: column - representará altura;
+                - flex-direction: row - representará largura;
+            */
+            flex-basis: 100px;
+            width: 200px; /* podemos usar além do flex-basis, a larugra normal, mas nesse caso, o que será mais forte será o flex-basis */
+        }
+
+        .flex-container div:nth-child(4) {
+            /* 
+            Flex
+            - nessa propriedade shortcut nós definimos (nessa ordem):
+                - grow
+                - shrink
+                - basis
+            */
+            flex: 3 6 100px; 
+        }
+
+        .flex-container {
+            width: 300px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container tag nolabel">
+        <div class="tag nolabel">1</div>
+        <div class="tag nolabel">2</div>
+        <div class="tag nolabel">3</div>
+        <div class="tag nolabel">4</div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>

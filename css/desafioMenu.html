@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Desafio Menu</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --redCod3r: #ca2424;
+            --white: #fff;
+            --dark: #222;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat';
+        }
+
+        header.cabecalho {
+            background-color: var(--dark);
+            border-bottom: 5px solid var(--redCod3r);
+            height: 80px;
+            box-sizing: content-box;
+        }
+
+        div.logo {
+            display: inline-block;
+            /* position: relative; */
+            height: 80px;
+            padding: 15px;
+        }
+
+        img.logo {
+            height: 100%;
+        }
+
+        button.menu-toggle {
+            display: none;
+            float: right;
+            height: 40px;
+            padding: 10px 20px;
+            margin: 20px 15px;
+        }
+
+        nav.menu {
+            display: inline-block;
+            vertical-align: top;
+            height: 80px;
+            padding: 30px 20px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        li > a {
+            text-decoration: none;
+            color: var(--white);
+            padding: 15px 20px;
+            border: 0px solid;
+            border-radius: 3px;
+        }
+
+        li > a:hover,
+        li > a.selected {
+            background-color: var(--redCod3r);
+            color: var(--white);
+        }
+
+        aside.autenticacao {
+            float: right;
+            height: 80px;
+            padding: 30px 20px;
+        }
+
+        aside > a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        aside > a.botao {
+            background-color: var(--redCod3r);
+            border-radius: 30px;
+            padding: 15px 25px;
+            margin-left: 10px;
+        }
+
+        /* Exibe o botão do mobile para dispositivos móveis */
+        @media screen and (max-width: 720px) {
+            button.menu-toggle { display: block; }
+            nav.menu { display: none; }
+        }
+
+        /* Oculta os menus de login e registrar a partir de 800px */
+        @media screen and (max-width: 950px) {
+            aside.autenticacao { display: none; }
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <a href="#inicio">
+                <img class="logo" src="http://files.cod3r.com.br/curso-web/logo.png" alt="Logo" />
+            </a>
+        </div>
+        <button class="menu-toggle">
+            <i class="fa fa-lg fa-bars"></i>
+        </button>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+                <li>
+                    <a href="#cursos">Cursos</a>
+                </li>
+                <li>
+                    <a href="#sobre">Sobre</a>
+                </li>
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="autenticacao">
+            <a href="#login">Login</a>
+            <a href="#registar" class="botao destaque">Registrar</a>
+        </aside>
+    </header>
+
+    <script>
+        // Função para quando o hash (#) da página mudar colocar a classe selected no a
+        window.onhashchange = function(e) {
+            const oldURL = e.oldURL.split('#')[1];
+            const newURL = e.newURL.split('#')[1];
+            
+            const oldLink = document.querySelector(`.menu [href='#${oldURL}`);
+            const newLink = document.querySelector(`.menu [href='#${newURL}'`)
+
+            oldLink && oldLink.classList.remove('selected');
+            newLink && newLink.classList.add('selected');
+
+        }
+    </script>
+</body>
+
+</html>

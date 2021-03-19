@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Trabalhando com Eventos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <div>Elemento</div>
+    <script>
+        // Evento para clicar e mover o elemento com o mouse
+        const item = document.querySelector('div');
+        item.style.position = 'absolute'
+
+        // Ação do mover do mouse
+        item.onmousemove = event => {
+            const item = event.target // e.target pega o elemento referente ao evento (no caso a própria div que disparou o evento)
+            item.style.cursor = 'move'
+
+            // Muda apenas se foi clicado
+            if(event.buttons) {
+                // ClientY - pega onde o cursor do mouse está
+                // item.clientHeight - altura da div
+                // item.clientWidht - largura da div
+                item.style.top = `${event.clientY - (item.clientHeight / 2)}px`
+                item.style.left = `${event.clientX - (item.clientWidth / 2)}px`
+            }
+        }
+    </script>
+</body>

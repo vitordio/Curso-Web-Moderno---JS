@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flexbox #02</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        .flex-container div {
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            display: flex;
+            height: 300px;
+            width: 600px;
+        }
+
+        /* Aplicando a propriedade apenas no terceiro filho dentro do flex-container */
+        .flex-container div:nth-child(3) {
+            background-color: indianred;
+
+            /* Todos os itens tem oprdem 0 por padrão
+            Atribuindo uma ordem para o 3 filho, ele passa a ter uma ordem maior
+            e passa a ser o último elemento
+
+            Quanto maior a ordem, vai sendo exibido por último
+            */ 
+            order: 1; /* último item */
+            order: 0;
+            order: -1; /* passa a ser o primeiro */
+
+            align-self: center;
+            align-self: flex-start;
+            align-self: flex-end;
+            align-self: stretch; /* default */
+        }
+        
+        .flex-container div {
+            width: 100px;
+
+            /*
+            Flex-grow
+            - define a lógica de como vamos ocupar o espaço q falta dentro do flexcontainer
+            */
+            flex-grow: 0;
+            flex-grow: 1;
+        }
+
+        /* Pega o primeiro elemento da div, e não como está visualmente aparecendo (o 3 em primeiro por conta do order) */
+        .flex-container div:nth-child(1) {
+            flex-grow: 2; /* ocupará mais espaço que os demais por ter peso maior */
+        }
+
+        .flex-container {
+            width: 300px;
+
+            /*
+            Flex-shrink
+            - define a forma de como os elementos vão ficar encolhidos no flex-container
+            */
+            flex-shrink: 1;
+        }
+
+        .flex-container div:nth-child(1) {
+            flex-shrink: 5; /* encolherá mais que os demais por ter peso maior */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container tag nolabel">
+        <div class="tag nolabel">1</div>
+        <div class="tag nolabel">2</div>
+        <div class="tag nolabel">3</div>
+        <div class="tag nolabel">4</div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>
