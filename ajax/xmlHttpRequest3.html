@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>XMLHttpRequest #03</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+        // Ajax com XMLHTTPREQUEST e XML
+        function ajax(config) {
+            const xhr = new XMLHttpRequest()
+            xhr.open(config.metodo, config.url, true)
+
+            // evento será chamado quando o status da requisição mudar
+            xhr.onreadystatechange = e => {
+                // código 4: requisição finalizada e resposta pronta
+                if(xhr.readyState === 4) {
+
+                    if(xhr.status === 200) {
+                        config.sucesso(xhr.responseXML)
+                    } else if(xhr.status >= 400) {
+                        config.erro({
+                            codigo: xhr.status,
+                            texto: xhr.statusText
+                        })
+                    }
+                }
+            }
+
+            xhr.send()
+        }
+
+        // function criarTabela(estados) {
+        //     const linhas = estados.map(estado => {
+        //         const tdId = document.createElement('td')
+        //         tdId.innerHTML = estado.getAttribute('id')
+
+        //         const tdNome = document.createElement('td')
+        //         tdNome.innerHTML = estado.getAttribute('nome')
+
+        //         const tdSigla = document.createElement('td')
+        //         tdSigla.innerHTML = estado.getAttribute('sigla')
+
+        //         const tr = document.createElement('tr')
+        //         tr.appendChild(tdId)
+        //         tr.appendChild(tdNome)
+        //         tr.appendChild(tdSigla)
+
+        //         return tr
+        //     })
+
+        //     const tabela = document.createElement('table')
+        //     linhas.forEach(estado => tabela.appendChild(estado))
+
+        //     document.body.appendChild(tabela)
+        // }
+
+        ajax({
+            url: 'dados/estados.xml',
+            metodo: 'GET',
+            sucesso(resposta) {
+                // trabalhando com as tags vindas do XML
+                const estados = resposta.getElementsByTagName('estado')
+                const arrEstados = Array.from(estados)
+                // criarTabela(arrEstados)
+
+                // transforma o array em um único elemento, no caso uma string
+                const itens = arrEstados.reduce(
+                    (html, estado) => html + `<li>${estado.attributes.nome.value}</li>`, '')
+
+                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</li>`)
+            }, 
+            erro(dados) {
+                const msg = document.createTextNode(`${dados.codigo}: ${dados.texto}`)
+                document.body.appendChild(msg)
+            }
+        })
+    </script>
+</body>

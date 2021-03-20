@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Fetch API #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+        // Fetch - Forma mais simples de trabalhar com ajax
+        // Moderna mudança para o XMLHTTPRequest
+        // Retorna uma promise
+        const url = 'dados/estados.json'
+
+        fetch(url)
+            .then(resp => resp.json())
+            .then(estados => { // aqui já temos todos os estados
+                const itens = estados.reduce(
+                    (html, estado) => html + `<li>${estado.nome}</li>`, ''
+                )
+
+                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`);
+            })
+    </script>
+</body>

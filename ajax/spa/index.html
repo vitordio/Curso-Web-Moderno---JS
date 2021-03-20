@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Mini SPA</title>
+    <link rel='stylesheet' href='../css/estilo.css'>
+    <style>
+        nav {
+            font-size: 2em;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #FFF;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body class="conteudo">
+    <nav>
+        <!--
+            wm-link referencia a página que vamos carregar
+            wm-destino seletor que usamos para mostrar aonde vamos exibir o conteúdo
+        -->
+        <a href wm-link="series.html" wm-destino=".pagina">Séries</a> |
+        <a href wm-link="linguagens.html" wm-destino=".pagina">Linguagens</a>
+    </nav>
+    <div class="pagina"></div>
+    <script>
+        // SPA - Single Page Application
+        // Faremos apenas uma ñavegação com ajax, sem recarregar as páginas
+        function navegarViaAjax(url, seletor, push = true) {
+            if(!url || !seletor) return
+
+            const elemento = document.querySelector(seletor)
+            fetch(url)
+                .then(resp => resp.text()) // text pega o texto do html 
+                .then(html => {
+                    elemento.innerHTML = html
+
+                    // Utilizamos o push para armazenar um histórico no navegador
+                    // Controlamos também a url, sempre que clicar no link, alterará a url mas n recarregará a página
+                    // Fazemos a verificação pois será armazenado no históirico apenas no link do link
+                    // quando o usuário clicar apenas para voltar as páginas, não armazenará
+                    if(push) history.pushState({ seletor }, null, url)
+                })
+        }
+
+        document.querySelectorAll('[wm-link]').forEach(link => {
+            const url = link.attributes['wm-link'].value
+            const seletorDestino = link.attributes['wm-destino'].value
+
+            // interceptamos o click do link
+            link.onclick = e => {
+                e.preventDefault()
+                navegarViaAjax(url, seletorDestino)
+            }
+        })
+
+        // Um evento popstate é disparado para a janela toda vez que o histórico
+        // de atividades mudar entre dois históricos de entradas para o mesmo documento        
+        window.onpopstate = e => {
+            if(e.state) navegarViaAjax(window.location.href, e.state.seletor, false)
+        }
+    </script>
+</body>

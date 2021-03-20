@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Axios #01</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src="js/axios.js"></script>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Estados</h1>
+
+    <script>
+        // Axios é uma biblioteca de terceiros
+        // API muito interessante baseado em promise
+        // Trabalha basicamente da mesma forma que o fetch
+        // Carregamos o axios pelo arquivo axios.js
+        
+        // Diferente do fetch que temos que dar o resp.json()
+        // no axios no primeiro then já temos o que queremos da resposta, utilizando o .data
+        const url = 'dados/estados.json'
+        axios(url).then(resp => {
+            // console.log(resp.data); // retorna um array
+            const itens = resp.data.reduce(
+                (html, estado) => html + `<li>${estado.nome}</li>`, ''
+            )
+
+            document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`)
+        })
+    </script>
+</body>
